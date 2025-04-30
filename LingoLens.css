@@ -26,7 +26,11 @@ html, body {
     margin-top: 10vh;
     backdrop-filter: blur(400px);
 }
+.selected{
+    background-color: rgb(80, 31, 158)!important;
+}
 .section{
+    user-select: none;
     font-size: 30px;
     letter-spacing: 3px;
     display: flex;
@@ -46,6 +50,7 @@ main{
     margin-left: 20%;
 }
 .index {
+    user-select: none;
     margin-left: 10px;
     font-size: 20px;
     display: flex;
@@ -88,10 +93,50 @@ main{
     
 }
 
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 10;
+  }
+  
+  .modal-content {
+    background: rgba(0, 132, 255, 0.253);
+    padding: 20px;
+    width: 25%;
+    left: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    position: relative;
+  }
+  
+  .none {
+    display: none;
+  }
+  
+  #modal-content p {
+    font-weight: bold;
+    color: chocolate;
+    font-size: 20px;
+  }
+
 @media (max-width: 690px) {
     body {
       flex-direction: column;
     }
+    .modal-content {
+        background: rgb(0, 132, 255);
+        padding: 20px;
+        width: 100%;
+        left: 0%;
+        height: 20%;
+        text-align: center;
+        position: relative;
+      }
     .nav {
       min-height: 100px;
       flex-direction: row;

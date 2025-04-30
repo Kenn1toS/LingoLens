@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="./LingoLens_icon.png">
+    <link rel="icon" type="image/png" href="./source/LingoLens_icon.png">
     <link rel="stylesheet" href="./LingoLens.css">
     <link rel="stylesheet" href="./ResetStyle.css">
     <title>LingoLens</title>
 </head>
 <body>
+  <div id="modal" class="modal none">
+    <div class="modal-content" id="modal-content">
+      <p id="modal-text">Информация появится здесь</p>
+    </div>
+  </div>
+  
     <button class="ButtonOpen" onclick="handleClick()"></button>
 <nav class="nav">
-    <section class="section">particle</section>
+    <section class="section selected">particle</section>
     <section class="section">times</section>
-    <section class="section hiden">j</section>
+    <section class="section">Settings</section>
     <section class="section hiden">d</section>
 </nav>
 
@@ -33,7 +39,6 @@
       <section class="index ">under</section>
       <section class="index ">over</section>
       <section class="index ">behind</section>
-      <section class="index ">next to</section>
     </div>
   
     <!-- Прийменники часу -->
