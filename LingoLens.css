@@ -136,15 +136,19 @@ main{
       .modal {
         height: auto;
       }
+      .hiden{
+        display: none;
+    }
     .nav {
+      margin-top: 0;
       min-height: 100px;
-      flex-direction: row;
-      height: 10%;
+      flex-direction: column;
+      height: 30%;
       width: 100%;
-      bottom: 0;
-      margin-left: 20%;
+      bottom:100px;
     }
     .section{
+      font-size: clamp(27px, 6vw, 39px);
         width: 100%;
         height: 100%;
         border: 2px solid rgba(255, 255, 255, 0.712);
@@ -161,6 +165,7 @@ main{
     .ButtonOpen{
         min-height: 100px;
         bottom: 0;
+        width: 100%;
     }
     .ConteinerIndex{
         justify-content: start;
