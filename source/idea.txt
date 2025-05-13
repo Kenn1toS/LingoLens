@@ -1,1 +1,38 @@
-W
+30-04-2025 V1.0.0
+
+changes:
+
+-The functionality of text description of particles when clicking on them was added.
+
+-The bug with the logo was fixed.
+
+-The problem with hidden content when switching to the mobile version was partially resolved.
+
+-Added settings button (inactive) and designation of the selected tab.
+
+need to change:
+
+-Creating and transferring databases (useful for the functionality of "times" and "settings").
+
+next change:
+
+-Redesign and code optimization.(0/100)
+
+
+05-05-2025 V1.1
+
+changes:
+
+-Redesign and code optimization.(70/100)
+
+13-05-2025 V1.2
+
+changes:
+
+-Adding functionality for switching between buttons(may not work correctly on phones).
+
+-Redesign and code optimization.(100/100)
+
+-More flexible code system.
+
+

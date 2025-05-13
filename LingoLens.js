@@ -2,11 +2,10 @@ function handleClick() {
   const button = document.querySelector(".ButtonOpen");
   const nav = document.querySelector(".nav");
 
-  button.classList.toggle("active");
+  button.classList.toggle("activeNav");
   nav.classList.toggle("none");
 }
 
-// Карта информации
 const infoMap = {
   the: [
     "The – означений артикль.",
@@ -209,34 +208,66 @@ const infoMap = {
 };
 
 
-// Ссылки на элементы модалки
 const modal = document.getElementById("modal");
 const modalText = document.getElementById("modal-text");
 const modalContent = document.getElementById("modal-content");
 
-// Добавляем обработчики на каждое слово
 document.querySelectorAll(".index").forEach((element) => {
   element.addEventListener("click", (e) => {
     const text = element.textContent.trim();
     const data = infoMap[text];
 
-    // Показываем модалку
     if (Array.isArray(data)) {
-      modalContent.innerHTML = data.map(line => `<p>${line}</p>`).join("");
+      modalContent.innerHTML = data
+        .map((line, index) => `<p class="modal-line line-${index}">${line}</p>`)
+        .join("");
     } else if (typeof data === "string") {
-      modalContent.innerHTML = `<p>${data}</p>`;
+      modalContent.innerHTML = `<p class="modal-line single-line">${data}</p>`;
     } else {
-      modalContent.innerHTML = "<p>Информация не найдена.</p>";
+      modalContent.innerHTML = `<p class="modal-line not-found">Информация не найдена.</p>`;
     }
+    
 
     modal.classList.remove("none");
-    e.stopPropagation(); // Чтобы не закрывалась сразу
+    e.stopPropagation(); 
   });
 });
 
-// Закрытие при клике вне модалки
 document.addEventListener("click", (e) => {
   if (!modal.classList.contains("none") && !modalContent.contains(e.target)) {
     modal.classList.add("none");
   }
 });
+function deactivateAllSections() {
+  document.querySelectorAll(".section").forEach(btn => btn.classList.remove("activeNav"));
+
+  const allMainBlocks = [".mainHome", ".mainParticle", ".mainTimes", ".mainSettings"];
+  allMainBlocks.forEach(selector => {
+    const el = document.querySelector(selector);
+    if (el) el.classList.remove("active");
+  });
+}
+
+function activateSection(sectionClass, mainClass) {
+  deactivateAllSections();
+  document.querySelector(sectionClass).classList.add("activeNav");
+  document.querySelector(mainClass).classList.add("active");
+}
+
+function handleClickHome() {
+  activateSection(".sectionHome", ".mainHome");
+}
+
+function handleClickParticle() {
+  activateSection(".sectionParticle", ".mainParticle");
+}
+
+function handleClickTimes() {
+  activateSection(".sectionTimes", ".mainTimes");
+}
+
+function handleClickSettings() {
+  activateSection(".sectionSettings", ".mainSettings");
+}
+
+window.addEventListener("DOMContentLoaded", handleClickHome);
