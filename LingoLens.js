@@ -2,12 +2,12 @@ function handleClick() {
   const button = document.querySelector(".ButtonOpen");
   const nav = document.querySelector(".nav");
 
-  button.classList.toggle("activeNav");
+  button.classList.toggle("selected");
   nav.classList.toggle("none");
 }
 
 const infoMap = {
-  the: [
+   the: [
     "The – означений артикль.",
     "Вказує на конкретний предмет або особу.",
     "Коли йдеться про щось відоме або вже згадане.",
@@ -204,68 +204,75 @@ const infoMap = {
     "Виражає 'б' в умовних або ввічливих конструкціях.",
     "Вживається в гіпотетичних ситуаціях або ввічливих проханнях.",
     "Приклад: I would go if I had time."
-  ]
+  ],
+  "Present Simple": ["Present Simple – простий теперішній час.", "Регулярні дії, факти.", "Структура: I/You/We/They play, He/She/It plays.", "Приклад: She plays the piano."],
+  "Present Continuous": ["Present Continuous – тривалий теперішній час.", "Дії, які відбуваються зараз.", "Структура: am/is/are + V-ing.", "Приклад: I am reading."],
+  "Present Perfect": ["Present Perfect – доконаний теперішній час.", "Завершена дія з результатом в теперішньому.", "Структура: have/has + V3.", "Приклад: He has eaten."],
+  "Present Perfect Continuous": ["Тривала дія, що почалась у минулому і триває досі.", "Структура: have/has been + V-ing.", "Приклад: I have been learning for 2 hours."],
+  "Past Simple": ["Past Simple – простий минулий час.", "Дія, яка завершилась у минулому.", "Структура: V2 або -ed.", "Приклад: I visited London."],
+  "Past Continuous": ["Тривала дія в минулому.", "Структура: was/were + V-ing.", "Приклад: They were playing football."],
+  "Past Perfect": ["Дія, що завершилась до іншої в минулому.", "Структура: had + V3.", "Приклад: She had left before I arrived."],
+  "Past Perfect Continuous": ["Тривала дія до іншої в минулому.", "Структура: had been + V-ing.", "Приклад: I had been waiting for an hour."],
+  "Future Simple": ["Future Simple – просте майбутнє.", "Структура: will + V.", "Приклад: I will go tomorrow."],
+  "Future Continuous": ["Тривала дія в майбутньому моменті.", "Структура: will be + V-ing.", "Приклад: I will be working at 5 p.m."],
+  "Future Perfect": ["Завершена дія до певного моменту в майбутньому.", "Структура: will have + V3.", "Приклад: I will have finished by noon."],
+  "Future Perfect Continuous": ["Тривала дія до майбутнього моменту.", "Структура: will have been + V-ing.", "Приклад: She will have been working for 3 hours."]
 };
-
 
 const modal = document.getElementById("modal");
 const modalText = document.getElementById("modal-text");
 const modalContent = document.getElementById("modal-content");
 
-document.querySelectorAll(".index").forEach((element) => {
+// Обработчик для всех элементов .index и .indexTimes
+[...document.querySelectorAll(".index, .indexTimes")].forEach((element) => {
   element.addEventListener("click", (e) => {
     const text = element.textContent.trim();
     const data = infoMap[text];
 
     if (Array.isArray(data)) {
-      modalContent.innerHTML = data
-        .map((line, index) => `<p class="modal-line line-${index}">${line}</p>`)
-        .join("");
+      modalContent.innerHTML = data.map((line, i) => `<p class="modal-line line-${i}">${line}</p>`).join("");
     } else if (typeof data === "string") {
       modalContent.innerHTML = `<p class="modal-line single-line">${data}</p>`;
     } else {
-      modalContent.innerHTML = `<p class="modal-line not-found">Информация не найдена.</p>`;
+      modalContent.innerHTML = `<p class="modal-line not-found">Інформація не знайдена.</p>`;
     }
-    
 
     modal.classList.remove("none");
-    e.stopPropagation(); 
+    e.stopPropagation();
   });
 });
 
+// Закрытие модального окна
 document.addEventListener("click", (e) => {
   if (!modal.classList.contains("none") && !modalContent.contains(e.target)) {
     modal.classList.add("none");
   }
 });
-function deactivateAllSections() {
-  document.querySelectorAll(".section").forEach(btn => btn.classList.remove("activeNav"));
 
-  const allMainBlocks = [".mainHome", ".mainParticle", ".mainTimes", ".mainSettings"];
-  allMainBlocks.forEach(selector => {
-    const el = document.querySelector(selector);
+// Управление секциями
+function deactivateAllSections() {
+  document.querySelectorAll(".section").forEach(btn => btn.classList.remove("selected"));
+  [".mainHome", ".mainParticle", ".mainTimes", ".mainSettings"].forEach(sel => {
+    const el = document.querySelector(sel);
     if (el) el.classList.remove("active");
   });
 }
 
 function activateSection(sectionClass, mainClass) {
   deactivateAllSections();
-  document.querySelector(sectionClass).classList.add("activeNav");
+  document.querySelector(sectionClass).classList.add("selected");
   document.querySelector(mainClass).classList.add("active");
 }
 
 function handleClickHome() {
   activateSection(".sectionHome", ".mainHome");
 }
-
 function handleClickParticle() {
   activateSection(".sectionParticle", ".mainParticle");
 }
-
 function handleClickTimes() {
   activateSection(".sectionTimes", ".mainTimes");
 }
-
 function handleClickSettings() {
   activateSection(".sectionSettings", ".mainSettings");
 }
