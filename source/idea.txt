@@ -35,4 +35,22 @@ changes:
 
 -More flexible code system.
 
+16-05-2025 V1.3
+
+-Adding functionality for switching between buttons(may not work correctly on phones). fixed ✔
+
+-minor shift rework.
+
+-adding content to tabs.
+
+
+19-05-2025 V1.4
+
+-bug fix:
+
+--when selecting a tab, the panel closes.
+
+--fixed a bug with an inactive panel on the HOME tab.
+
+--rearranged the order of blocks so that it is clearer, in Times.
 

@@ -1,10 +1,24 @@
-function handleClick() {
+function handleClick(event) {
   const button = document.querySelector(".ButtonOpen");
   const nav = document.querySelector(".nav");
 
   button.classList.toggle("selected");
-  nav.classList.toggle("none");
+  nav.classList.toggle("active");
+
+  document.removeEventListener('click', outsideClickListener);
+  setTimeout(() => {
+    document.addEventListener('click', outsideClickListener);
+  }, 0); 
+
+  function outsideClickListener(e) {
+    if (!nav.contains(e.target) && !button.contains(e.target)) {
+      nav.classList.remove("active");
+      button.classList.remove("selected");
+      document.removeEventListener('click', outsideClickListener);
+    }
+  }
 }
+
 
 const infoMap = {
    the: [
@@ -218,17 +232,16 @@ const infoMap = {
   "Future Perfect": ["Завершена дія до певного моменту в майбутньому.", "Структура: will have + V3.", "Приклад: I will have finished by noon."],
   "Future Perfect Continuous": ["Тривала дія до майбутнього моменту.", "Структура: will have been + V-ing.", "Приклад: She will have been working for 3 hours."]
 };
-
 const modal = document.getElementById("modal");
-const modalText = document.getElementById("modal-text");
 const modalContent = document.getElementById("modal-content");
 
-// Обработчик для всех элементов .index и .indexTimes
-[...document.querySelectorAll(".index, .indexTimes")].forEach((element) => {
+// Открытие и обновление модалки
+document.querySelectorAll(".index, .indexTimes").forEach(element => {
   element.addEventListener("click", (e) => {
     const text = element.textContent.trim();
     const data = infoMap[text];
 
+    // Заполнение содержимого
     if (Array.isArray(data)) {
       modalContent.innerHTML = data.map((line, i) => `<p class="modal-line line-${i}">${line}</p>`).join("");
     } else if (typeof data === "string") {
@@ -237,15 +250,17 @@ const modalContent = document.getElementById("modal-content");
       modalContent.innerHTML = `<p class="modal-line not-found">Інформація не знайдена.</p>`;
     }
 
-    modal.classList.remove("none");
-    e.stopPropagation();
+    modal.classList.remove("none"); // показать модалку
   });
 });
 
-// Закрытие модального окна
+// Закрытие модалки при клике вне .modal-content и вне элементов-триггеров
 document.addEventListener("click", (e) => {
-  if (!modal.classList.contains("none") && !modalContent.contains(e.target)) {
-    modal.classList.add("none");
+  const isInsideModal = modalContent.contains(e.target);
+  const isTrigger = e.target.closest(".index, .indexTimes");
+
+  if (!isInsideModal && !isTrigger) {
+    modal.classList.add("none"); // скрыть модалку
   }
 });
 
