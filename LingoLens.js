@@ -10,14 +10,7 @@ function handleClick(event) {
     document.addEventListener('click', outsideClickListener);
   }, 0); 
 
-  function outsideClickListener(e) {
-    if (!nav.contains(e.target) && !button.contains(e.target)) {
-      nav.classList.remove("active");
-      button.classList.remove("selected");
-      document.removeEventListener('click', outsideClickListener);
     }
-  }
-}
 
 
 const infoMap = {
@@ -235,13 +228,11 @@ const infoMap = {
 const modal = document.getElementById("modal");
 const modalContent = document.getElementById("modal-content");
 
-// Открытие и обновление модалки
 document.querySelectorAll(".index, .indexTimes").forEach(element => {
   element.addEventListener("click", (e) => {
     const text = element.textContent.trim();
     const data = infoMap[text];
 
-    // Заполнение содержимого
     if (Array.isArray(data)) {
       modalContent.innerHTML = data.map((line, i) => `<p class="modal-line line-${i}">${line}</p>`).join("");
     } else if (typeof data === "string") {
@@ -250,21 +241,19 @@ document.querySelectorAll(".index, .indexTimes").forEach(element => {
       modalContent.innerHTML = `<p class="modal-line not-found">Інформація не знайдена.</p>`;
     }
 
-    modal.classList.remove("none"); // показать модалку
+    modal.classList.remove("none"); 
   });
 });
 
-// Закрытие модалки при клике вне .modal-content и вне элементов-триггеров
 document.addEventListener("click", (e) => {
   const isInsideModal = modalContent.contains(e.target);
   const isTrigger = e.target.closest(".index, .indexTimes");
 
   if (!isInsideModal && !isTrigger) {
-    modal.classList.add("none"); // скрыть модалку
+    modal.classList.add("none"); 
   }
 });
 
-// Управление секциями
 function deactivateAllSections() {
   document.querySelectorAll(".section").forEach(btn => btn.classList.remove("selected"));
   [".mainHome", ".mainParticle", ".mainTimes", ".mainSettings"].forEach(sel => {
@@ -277,6 +266,25 @@ function activateSection(sectionClass, mainClass) {
   deactivateAllSections();
   document.querySelector(sectionClass).classList.add("selected");
   document.querySelector(mainClass).classList.add("active");
+
+  if (!isNavLocked) {
+    document.querySelector(".nav").classList.remove("active");
+    document.querySelector(".ButtonOpen").classList.remove("selected");
+  }
+}
+
+let isNavLocked = false;
+
+function handleLockNav() {
+  isNavLocked = !isNavLocked;
+
+  const lockBtn = document.querySelector(".secured");
+  lockBtn.classList.toggle("locked", isNavLocked); 
+
+  if (isNavLocked) {
+    document.querySelector(".nav").classList.add("active");
+    document.querySelector(".ButtonOpen").classList.add("selected");
+  }
 }
 
 function handleClickHome() {
@@ -291,5 +299,7 @@ function handleClickTimes() {
 function handleClickSettings() {
   activateSection(".sectionSettings", ".mainSettings");
 }
+
+
 
 window.addEventListener("DOMContentLoaded", handleClickHome);
