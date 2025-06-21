@@ -1,3 +1,9 @@
+
+
+
+
+
+
 function handleClick(event) {
   const button = document.querySelector(".ButtonOpen");
   const nav = document.querySelector(".nav");
@@ -303,3 +309,41 @@ function handleClickSettings() {
 
 
 window.addEventListener("DOMContentLoaded", handleClickHome);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ const textarea = document.getElementById('myText');
+
+  textarea.value = localStorage.getItem('savedText') || '';
+
+  textarea.addEventListener('input', () => {
+    localStorage.setItem('savedText', textarea.value);
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

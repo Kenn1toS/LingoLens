@@ -94,24 +94,38 @@ body{
   flex-direction: column;
 }
 .Hibox{
+  top: 5%;
+right: 5%;
+position: absolute;
+justify-content: start;
+align-items: start;
 display: flex;
-position: relative;
 width: 40%;
 height: 20%;
 background-color: rgba(255, 255, 255, 0.151);
 border-radius: 10px;
 box-shadow: 10px 5px 5px blue;
-margin: 5%;
-margin-left: auto;
 padding: 10px;
 font-size: clamp(9px, 3vw, 21px);
 color: blue;
 }
-.Hitext{
-
+.note{
+width: 100%;
+height: 100%;
 }
-.News{
-  margin-right: auto;
+
+textarea {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: none;           
+  outline: none;           
+  background-color: transparent; 
+  resize: none;            
+  box-shadow: none;       
+  padding: 10px;           
+  color: white;            
+  font-size: 16px;         
 }
 @media (max-width: 690px) {
 .Hibox{
