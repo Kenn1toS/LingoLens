@@ -60,6 +60,12 @@ body{
   border-radius:30px;
   overflow: hidden;
 }
+
+@media (max-width: 690px) {
+    .secured{
+      display: none;
+    }
+  }
 .ButtonOpen{
   font-size: clamp(18px, 4vw, 30px);
   letter-spacing: 3px;
