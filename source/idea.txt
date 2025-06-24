@@ -54,3 +54,16 @@ changes:
 
 --rearranged the order of blocks so that it is clearer, in Times.
 
+16-06-2025 V1.5
+
+-added a button with adjustment for closing curtains.
+
+16-06-2025 V1.6
+
+-added content to the HOME tab:
+
+--added contact with developers.
+
+--addition of a new function of saving to notes.
+
+--preparation for creating accounts.

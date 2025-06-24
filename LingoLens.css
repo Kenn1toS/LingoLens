@@ -97,15 +97,28 @@ body{
 }
 /* ------------------------------------------------------------------------------------------------------------ Home*/
 .mainHome{
+  align-items: end;
   flex-direction: column;
 }
+.IndividualHome{
+  background-color: rgba(255, 255, 255, 0.089);
+  
+  display: flex;
+  justify-content: end;
+  align-items: center;
+width: 100%;
+height: 10%;
+
+}
+.AccountHomeImg{
+margin-right: 5%;
+  width: auto;
+  height: 80%;
+
+}
 .Hibox{
-  top: 5%;
-right: 5%;
-position: absolute;
-justify-content: start;
-align-items: start;
-display: flex;
+margin-top: 3%;
+margin-right: 5%;
 width: 40%;
 height: 20%;
 background-color: rgba(255, 255, 255, 0.151);
@@ -132,6 +145,69 @@ textarea {
   padding: 10px;           
   color: white;            
   font-size: 16px;         
+}
+.AboutUs{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  
+  width: 100%;
+  height: 100%;
+  
+}
+.AboutUsIcon{
+   transition: transform 0.4s ease, filter 0.3s ease;
+  cursor: pointer;
+  margin-right: 2%;
+  margin-left: 2%;
+  width: auto;
+  height: 70%;
+}
+.AboutUsIcon:hover {
+  animation: pulse 0.6s ease;
+  filter: brightness(1.4) drop-shadow(0 0 8px #30017c);
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+#messages {
+  margin-top: 3%;
+margin-right: 5%;
+width: 40%;
+height: 50%;
+background-color: rgba(255, 255, 255, 0.151);
+border-radius: 10px;
+box-shadow: 10px 5px 5px blue;
+padding: 10px;
+font-size: clamp(9px, 3vw, 21px);
+color: blue;
+}
+
+.message {
+  position: relative;
+  padding: 10px;
+  background: #333;
+  margin-bottom: 10px;
+  border-radius: 6px;
+   white-space: pre-wrap; 
+  word-break: break-word;
+}
+
+.message button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
 }
 @media (max-width: 690px) {
 .Hibox{
@@ -185,7 +261,7 @@ font-size: 3vh;
 .ConteinerIndexTimes{
   margin: 5%;
   flex-direction: row;
-   height: 20%;
+  height: 20%;
   width: 90%;
   justify-content: end;
   align-items: center;
@@ -206,8 +282,8 @@ font-size: 3vh;
 }
 @media (max-width: 690px) {
   .indexTimes{
-      justify-content: space-between;
-      width: auto;
+      
+      width: 90%;
   }
   .FirstConIN{
     margin-top: 30%;

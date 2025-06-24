@@ -305,31 +305,45 @@ function handleClickTimes() {
 function handleClickSettings() {
   activateSection(".sectionSettings", ".mainSettings");
 }
-
-
-
 window.addEventListener("DOMContentLoaded", handleClickHome);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  const textarea = document.getElementById('myText');
+  const messagesBlock = document.getElementById('messages');
 
-  textarea.value = localStorage.getItem('savedText') || '';
+  let messages = JSON.parse(localStorage.getItem('messagesList')) || [];
 
-  textarea.addEventListener('input', () => {
-    localStorage.setItem('savedText', textarea.value);
+  function renderMessages() {
+    messagesBlock.innerHTML = '';
+    messages.forEach((text, index) => {
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('message');
+      msgDiv.textContent = text;
+
+      const delBtn = document.createElement('button');
+      delBtn.onclick = () => {
+        messages.splice(index, 1);
+        localStorage.setItem('messagesList', JSON.stringify(messages));
+        renderMessages();
+      };
+
+      msgDiv.appendChild(delBtn);
+      messagesBlock.appendChild(msgDiv);
+    });
+  }
+
+  renderMessages();
+
+  textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); 
+      const text = textarea.value.trim();
+      if (text) {
+        messages.push(text);
+        localStorage.setItem('messagesList', JSON.stringify(messages));
+        renderMessages();
+        textarea.value = '';
+      }
+    }
   });
 
 
