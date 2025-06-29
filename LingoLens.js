@@ -347,14 +347,62 @@ window.addEventListener("DOMContentLoaded", handleClickHome);
   });
 
 
+ function register() {
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (!username || !email || !password || !confirmPassword) {
+      alert("Будь ласка, заповніть всі поля.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Паролі не співпадають.");
+      return;
+    }
+
+   window.location.href = "./index.html";
+  }
 
 
 
+    function loginButton(){
+     const reg = document.getElementById("reg");
+    const log = document.getElementById("log");
+
+    reg.style.display = "none";
+    log.style.display = "block";
+    }
+
+function login() {
+  const username = document.getElementById("usernameLogin").value.trim();
+  const password = document.getElementById("passwordLogin").value.trim();
+
+  const correctUsername = "user";
+  const correctPassword = "123";
+
+  if (!username || !password) {
+    alert("Будь ласка, заповніть всі поля.");
+    return;
+  }
+
+  if (username === correctUsername && password === correctPassword) {
+    window.location.href = "./index.html";
+  } else {
+    alert("Невірний логін або пароль.");
+  }
+}
 
 
+function loginButtonBack(){
+     const reg = document.getElementById("reg");
+    const log = document.getElementById("log");
 
-
-
+    reg.style.display = "block";
+    log.style.display = "none";
+    }
 
 
 

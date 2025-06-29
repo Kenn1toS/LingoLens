@@ -26,6 +26,7 @@ display: flex!important;
   transform: scale(0.95);
 }
 body{
+    font-family: Arial, sans-serif;
     overflow-x: hidden;
     background: linear-gradient(135deg, #000000, #1e3a8a);
     background-size: auto;
@@ -33,7 +34,7 @@ body{
     background-position: center;
     background-repeat: reverse;
     display: flex;
-
+    height: 100vh;
 }
 .nav{
   z-index: 100;
@@ -77,6 +78,7 @@ body{
   background-color: rgb(0, 0, 0);
   width: 20%;
   position: fixed;
+  z-index: 10;
 }
 .main{
   margin-bottom: 300px;
@@ -126,12 +128,10 @@ border-radius: 10px;
 box-shadow: 10px 5px 5px blue;
 padding: 10px;
 font-size: clamp(9px, 3vw, 21px);
-color: blue;
+color: rgb(255, 255, 255);
 }
-.note{
-width: 100%;
-height: 100%;
-}
+
+
 
 textarea {
   overflow: hidden;
@@ -156,6 +156,10 @@ textarea {
   
 }
 .AboutUsIcon{
+     -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
    transition: transform 0.4s ease, filter 0.3s ease;
   cursor: pointer;
   margin-right: 2%;
@@ -174,20 +178,25 @@ textarea {
   100% { transform: scale(1); }
 }
 #messages {
+  min-height: 40%;
+   max-height: none; /* переконатися */
+  height: auto;     /* залишити */
+  overflow: visible; /* або auto, якщо хочеш прокрутку */
+
   margin-top: 3%;
 margin-right: 5%;
 width: 40%;
-height: 50%;
+
 background-color: rgba(255, 255, 255, 0.151);
 border-radius: 10px;
 box-shadow: 10px 5px 5px blue;
 padding: 10px;
 font-size: clamp(9px, 3vw, 21px);
-color: blue;
+color: rgb(255, 255, 255);
 }
 
 .message {
-  position: relative;
+  position: relative;  
   padding: 10px;
   background: #333;
   margin-bottom: 10px;
@@ -198,7 +207,7 @@ color: blue;
 
 .message button {
   position: absolute;
-  top: 5px;
+  top: 40%;
   right: 5px;
   width: 10px;
   height: 10px;
@@ -208,6 +217,17 @@ color: blue;
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
+}
+
+@media (max-width: 690px) {
+#messages {
+
+width: 90%;
+
+}
+textarea {
+      font-size: clamp(30px, 4vw, 50px);  
+}
 }
 @media (max-width: 690px) {
 .Hibox{
@@ -378,3 +398,64 @@ background-color: aquamarine;
         width: 100%;
     }
   }
+  /* ------------------------------------------------------------------------------------------------------------ Register*/
+   .MainRegbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .Regbox {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: clamp(300px, 40%, 400px);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .InputField {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .RegisterButton {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .RegisterButton:hover {
+      background-color: #0056b3;
+    }
+
+    .note {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+  }
+  .login{
+    color: blue;
+      cursor: pointer;
+  }
+  #log{
+    display: none;
+  }
+  /* ------------------------------------------------------------------------------------------------------------ */
