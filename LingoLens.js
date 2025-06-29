@@ -363,7 +363,7 @@ window.addEventListener("DOMContentLoaded", handleClickHome);
       return;
     }
 
-   window.location.href = "./index.html";
+   window.location.href = "./main.html";
   }
 
 
@@ -389,7 +389,7 @@ function login() {
   }
 
   if (username === correctUsername && password === correctPassword) {
-    window.location.href = "./index.html";
+    window.location.href = "./main.html";
   } else {
     alert("Невірний логін або пароль.");
   }

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">g
+    <link rel="icon" type="image/png" href="./source/LingoLens_icon.png">
+    <link rel="stylesheet" href="./LingoLens.css">
+    <link rel="stylesheet" href="./ResetStyle.css">
+    <title>LingoLens</title>
+</head>
+<body>
+  <div id="modal" class="modal none">
+    <div class="modal-content" id="modal-content">
+      <p id="modal-text"></p>
+    </div>
+  </div>
+  
+    <button class="ButtonOpen" onclick="handleClick()"></button>
+<nav class="nav">
+    <button class="section sectionHome" onclick="handleClickHome()">Home</button>
+    <button class="section sectionParticle" onclick="handleClickParticle()">Particle</button>
+    <button class="section sectionTimes" onclick="handleClickTimes()">Times</button>
+    <button class="section sectionSettings" onclick="handleClickSettings()">Settings</button>
+    <img class="section secured" src="./source/free-icon-font-key-3914633.svg" alt="key" onclick="handleLockNav()">
+</nav>
+<div class="main mainHome">
+  <div class="IndividualHome">
+    <div class="AboutUs">
+    <img class="AboutUsIcon" src="./source/free-icon-font-telegram-6422206.svg" alt="">
+    <img class="AboutUsIcon" src="./source/free-icon-font-instagram-6422200.svg" alt="">
+    <img class="AboutUsIcon" src=".//source/free-icon-font-tik-tok-6422207.svg" alt="">
+  </div>
+  <img class="AccountHomeImg" src="./source/завантаження.svg" alt="">
+  </div>
+  <div class="Hibox" id="draggable">
+  <textarea id="myText" rows="4" cols="50" placeholder="Введіть текст..."></textarea>
+</div>
+
+<div id="messages"></div>
+</div>
+
+<div class="main mainParticle">
+    <div class="ConteinerIndex FirstConIN">
+      <section class="index ">the</section>
+      <section class="index ">a</section>
+      <section class="index ">an</section>
+    </div>
+  
+    <div class="ConteinerIndex">
+      <section class="index ">in</section>
+      <section class="index ">on</section>
+      <section class="index ">at</section>
+      <section class="index ">under</section>
+      <section class="index ">over</section>
+      <section class="index ">behind</section>
+    </div>
+
+    <div class="ConteinerIndex">
+      <section class="index ">in</section>
+      <section class="index ">on</section>
+      <section class="index ">at</section>
+    </div>
+  
+    <div class="ConteinerIndex">
+      <section class="index ">of</section>
+      <section class="index ">for</section>
+      <section class="index ">by</section>
+      <section class="index ">with</section>
+      <section class="index ">about</section>
+    </div>
+  
+    <div class="ConteinerIndex">
+      <section class="index ">to</section>
+      <section class="index ">not</section>
+      <section class="index ">up</section>
+      <section class="index ">off</section>
+      <section class="index ">out</section>
+      <section class="index ">away</section>
+    </div>
+  
+    <div class="ConteinerIndex">
+      <section class="index ">and</section>
+      <section class="index ">but</section>
+      <section class="index ">or</section>
+      <section class="index ">because</section>
+      <section class="index ">if</section>
+      <section class="index ">so</section>
+    </div>
+  
+    <div class="ConteinerIndex">
+      <section class="index ">can</section>
+      <section class="index ">could</section>
+      <section class="index ">must</section>
+      <section class="index ">should</section>
+      <section class="index ">will</section>
+      <section class="index ">would</section>
+    </div>
+  </div>
+
+  <div class="main mainTimes">
+<div class="ConteinerIndexTimes FirstConIN">
+  <section class="indexTimes">Past Simple</section>
+  <section class="indexTimes">Present Simple</section>
+  <section class="indexTimes">Future Simple</section>
+</div>
+
+<div class="ConteinerIndexTimes">
+  <section class="indexTimes">Past Continuous</section>
+  <section class="indexTimes">Present Continuous</section>
+  <section class="indexTimes">Future Continuous</section>
+</div>
+
+<div class="ConteinerIndexTimes">
+  <section class="indexTimes">Past Perfect</section>
+  <section class="indexTimes">Present Perfect</section>
+  <section class="indexTimes">Future Perfect</section>
+</div>
+
+<div class="ConteinerIndexTimes">
+  <section class="indexTimes">Past Perfect Continuous</section>
+  <section class="indexTimes">Present Perfect Continuous</section>
+  <section class="indexTimes">Future Perfect Continuous</section>
+</div>
+
+
+
+  </div>
+
+  <div class="main mainSettings">
+    <div class="sorry">
+      <p>Вибач, цей функціонал тимчасово недоступний😅</p>
+    </div>
+  </div>
+<script src="./LingoLens.js"></script>
+</body>
+</html>
