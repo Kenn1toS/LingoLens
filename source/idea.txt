@@ -39,31 +39,49 @@ changes:
 
 -Adding functionality for switching between buttons(may not work correctly on phones). fixed ✔
 
--minor shift rework.
+-Minor shift rework.
 
--adding content to tabs.
+-Adding content to tabs.
 
 
 19-05-2025 V1.4
 
--bug fix:
+-Bug fix:
 
---when selecting a tab, the panel closes.
+--When selecting a tab, the panel closes.
 
---fixed a bug with an inactive panel on the HOME tab.
+--Fixed a bug with an inactive panel on the HOME tab.
 
---rearranged the order of blocks so that it is clearer, in Times.
+--Rearranged the order of blocks so that it is clearer, in Times.
 
 16-06-2025 V1.5
 
--added a button with adjustment for closing curtains.
+-Added a button with adjustment for closing curtains.
 
 16-06-2025 V1.6
 
--added content to the HOME tab:
+-Added content to the HOME tab:
 
---added contact with developers.
+--Added contact with developers.
 
---addition of a new function of saving to notes.
+--Addition of a new function of saving to notes.
 
---preparation for creating accounts.
+--Preparation for creating accounts.
+
+29-06-2025 V1.7
+
+-Registration menu.
+
+-Improve notes.
+
+01-07-2025 V1.7.1
+
+-Start of accelerated development.
+
+-Improving code readability.
+
+-Added new version designation 1.1.x to indicate unnoticeable, small or testing changes.
+
+-Text adaptation: (stage 1)
+
+--Clear font sizes and fonts.

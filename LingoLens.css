@@ -1,461 +1,384 @@
-.selected{
-  background-color: rgb(80, 31, 158)!important;
-}
-.none{
-display: none!important;
-}
-.active{
-display: flex!important;
+/* ================== Глобальні стилі ================== */
+body {
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #000000, #1e3a8a);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  height: 100vh;
 }
 
-.mainHome,
-.mainParticle,
-.mainTimes,
-.mainSettings {
-  display: none;
+/* ================== Стани та утиліти ================== */
+.hidden {
+  display: none !important;
+}
+.selected {
+  background-color: rgb(80, 31, 158) !important;
+}
+.active {
+  display: flex !important;
 }
 
-.mainHome.active,
-.mainParticle.active,
-.mainTimes.active,
-.mainSettings.active {
-  display: flex;
-}
-.secured.locked {
-  filter: brightness(0.7);
-  transform: scale(0.95);
-}
-body{
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-    background: linear-gradient(135deg, #000000, #1e3a8a);
-    background-size: auto;
-    background-attachment: fixed;  
-    background-position: center;
-    background-repeat: reverse;
-    display: flex;
-    height: 100vh;
-}
-.nav{
-  z-index: 100;
-    position:fixed;
-    display: none;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 90%;
-    width: 20%;
-    margin-top: 10vh;
-    backdrop-filter: blur(400px);
-}
-.section{
-  user-select: none;
-  font-size: clamp(18px, 4vw, 30px);
-  letter-spacing: 3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+/* ================== Меню ================== */
+.menu-toggle {
   height: 10%;
   border: 2px solid rgba(255, 255, 255, 0.712);
-  background-color: rgba(255, 255, 255, 0.055);
-  border-radius:30px;
-  overflow: hidden;
-}
-
-@media (max-width: 690px) {
-    .secured{
-      display: none;
-    }
-  }
-.ButtonOpen{
-  font-size: clamp(18px, 4vw, 30px);
-  letter-spacing: 3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10%;
-  border: 2px solid rgba(255, 255, 255, 0.712);
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   width: 20%;
   position: fixed;
   z-index: 10;
 }
-.main{
-  margin-bottom: 300px;
+
+.nav {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 90%;
+  width: 20%;
+  margin-top: 10vh;
+  backdrop-filter: blur(400px);
+  z-index: 100;
+}
+
+.section {
+  letter-spacing: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  border: 2px solid rgba(255, 255, 255, 0.712);
+  background-color: rgba(255, 255, 255, 0.055);
+  border-radius: 30px;
+}
+
+.locked {
+  filter: brightness(0.7);
+  transform: scale(0.95);
+}
+
+/* ================== Мобільне меню ================== */
+@media (max-width: 690px) {
+  .nav {
+    flex-direction: column;
+    height: 30%;
+    width: 100%;
+    bottom: 100px;
+  }
+
+  .section {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .menu-toggle {
+    min-height: 100px;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .secured {
+    display: none;
+  }
+
+  .lock-toggle {
+    display: none;
+  }
+}
+
+/* ================== Сторінки ================== */
+.main {
   display: none;
   width: 100%;
   height: 100vh;
-  min-width: 550px;
   margin-left: 20%;
 }
+
 @media (max-width: 690px) {
-  .main{
-      margin-left: 0;
-      width: 100%;
-      height: 100vh;
-      min-width: 550px;
+  .main {
+    margin-left: 0;
   }
-  
 }
-/* ------------------------------------------------------------------------------------------------------------ Home*/
-.mainHome{
+
+/* ================== Головна ================== */
+.main-home {
   align-items: end;
   flex-direction: column;
 }
-.IndividualHome{
+
+.individual-home {
   background-color: rgba(255, 255, 255, 0.089);
-  
   display: flex;
   justify-content: end;
   align-items: center;
-width: 100%;
-height: 10%;
-
+  width: 100%;
+  height: 10%;
 }
-.AccountHomeImg{
-margin-right: 5%;
-  width: auto;
+
+.account-home-img {
+  margin-right: 5%;
   height: 80%;
-
-}
-.Hibox{
-margin-top: 3%;
-margin-right: 5%;
-width: 40%;
-height: 20%;
-background-color: rgba(255, 255, 255, 0.151);
-border-radius: 10px;
-box-shadow: 10px 5px 5px blue;
-padding: 10px;
-font-size: clamp(9px, 3vw, 21px);
-color: rgb(255, 255, 255);
 }
 
-
+.hibox,
+#messages {
+  margin-top: 3%;
+  margin-right: 5%;
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.151);
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px blue;
+  padding: 10px;
+  font-size: clamp(9px, 3vw, 21px);
+  color: white;
+}
 
 textarea {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  border: none;           
-  outline: none;           
-  background-color: transparent; 
-  resize: none;            
-  box-shadow: none;       
-  padding: 10px;           
-  color: white;            
-  font-size: 16px;         
-}
-.AboutUs{
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  
-  width: 100%;
-  height: 100%;
-  
-}
-.AboutUsIcon{
-     -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none;
-   transition: transform 0.4s ease, filter 0.3s ease;
-  cursor: pointer;
-  margin-right: 2%;
-  margin-left: 2%;
-  width: auto;
-  height: 70%;
-}
-.AboutUsIcon:hover {
-  animation: pulse 0.6s ease;
-  filter: brightness(1.4) drop-shadow(0 0 8px #30017c);
-}
-
-@keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.15); }
-  100% { transform: scale(1); }
-}
-#messages {
-  min-height: 40%;
-   max-height: none; /* переконатися */
-  height: auto;     /* залишити */
-  overflow: visible; /* або auto, якщо хочеш прокрутку */
-
-  margin-top: 3%;
-margin-right: 5%;
-width: 40%;
-
-background-color: rgba(255, 255, 255, 0.151);
-border-radius: 10px;
-box-shadow: 10px 5px 5px blue;
-padding: 10px;
-font-size: clamp(9px, 3vw, 21px);
-color: rgb(255, 255, 255);
+  border: none;
+  outline: none;
+  background-color: transparent;
+  resize: none;
+  box-shadow: none;
+  padding: 10px;
+  color: white;
 }
 
 .message {
-  position: relative;  
+  position: relative;
   padding: 10px;
   background: #333;
   margin-bottom: 10px;
   border-radius: 6px;
-   white-space: pre-wrap; 
+  white-space: pre-wrap;
   word-break: break-word;
 }
 
 .message button {
   position: absolute;
-  top: 40%;
   right: 5px;
-  width: 10px;
-  height: 10px;
+  width: 10%;
+  height: 50%;
   background: red;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 12px;
 }
 
 @media (max-width: 690px) {
-#messages {
-
-width: 90%;
-
-}
-textarea {
-      font-size: clamp(30px, 4vw, 50px);  
-}
-}
-@media (max-width: 690px) {
-.Hibox{
-width: 90%;
-top: 5%;
-right: 0%;
-padding: 10px;
-font-size: clamp(9px, 3vw, 21px);
-font-size: 3vh;
-}
-}
-/* ------------------------------------------------------------------------------------------------------------ Particle*/
-  .mainParticle{
-
-    flex-direction: column;
+  .hibox,
+  #messages {
+    width: 90%;
   }
+
+  textarea {
+    font-size: clamp(30px, 4vw, 50px);
+  }
+}
+
+/* ================== Соцмережі ================== */
+.about-us {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.about-us-icon {
+  user-select: none;
+  transition: transform 0.4s ease, filter 0.3s ease;
+  cursor: pointer;
+  margin: 0 2%;
+  height: 70%;
+}
+
+.about-us-icon:hover {
+  animation: pulse 0.6s ease;
+  filter: brightness(1.4) drop-shadow(0 0 8px #30017c);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ================== Particle ================== */
+.main-particle {
+  flex-direction: column;
+}
+
+.container-index {
+  justify-content: end;
+  display: flex;
+  flex-direction: row;
+  margin: 5% 5% 0 0;
+}
+
 .index {
   user-select: none;
-  margin-left: 10px;
-  font-size: clamp(18px, 4vw, 30px);
+  margin-left: 1%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(188, 240, 0, 0.267);
   padding: 10px;
-  width: auto;
   min-width: 10%;
 }
-.ConteinerIndex{
-  margin-top: 5%;
-  width: 100%;
-  justify-content: end;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  margin-right: 10px;
-}
+
 @media (max-width: 690px) {
-  .ConteinerIndex{
-      justify-content: start;
-      
+  .container-index {
+    justify-content: center;
   }
-  .FirstConIN{
+  .main-particle {
     margin-top: 30%;
   }
 }
-/* ------------------------------------------------------------------------------------------------------------ Times*/
-.mainTimes{
+
+/* ================== Times ================== */
+.main-times {
   flex-direction: column;
 }
-.ConteinerIndexTimes{
+
+.container-index-times {
   margin: 5%;
   flex-direction: row;
   height: 20%;
   width: 90%;
   justify-content: end;
-  align-items: center;
   display: flex;
   flex-direction: row;
-  margin-right: 10px;
 }
-.indexTimes{
-  height: 100%;
+
+.index-times {
   width: 20%;
   user-select: none;
-  font-size: clamp(18px, 4vw, 30px);
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(188, 240, 0, 0.267);
   padding: 10px;
 }
+
 @media (max-width: 690px) {
-  .indexTimes{
-      
-      width: 90%;
+  .index-times {
+    width: 90%;
   }
-  .FirstConIN{
+  .main-times {
     margin-top: 30%;
   }
 }
-/* ------------------------------------------------------------------------------------------------------------ Settings*/
-.sorry{
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100%;
-height: 100%;
-color: white;
-font-size: 5vh;
+
+/* ================== Settings ================== */
+.sorry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: white;
 }
-/* ------------------------------------------------------------------------------------------------------------ */
+
+/* ================== Modal ================== */
+.modal {
+  position: fixed;
+  width: 20%;
+  height: 100%;
+  margin-left: 20%;
+}
+
 .modal-content {
   backdrop-filter: blur(100px);
   background: rgba(0, 132, 255, 0.253);
-  padding: 20px;
-  width: 100%;
-  left: 100%;
+  padding: 4%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  position: relative;
 }
 
-
-.modal {
-    position: fixed;
-    width: 20%;
-    height: 100%;
-    display: flex;
-    z-index: 10;
-  }
-  
-  .modal-line {
-    text-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-  }
-
-.line-2 { 
-
+.modal-line {
+  text-shadow: 12px 12px 2px rgba(0, 0, 255, 0.2);
+  color: white;
 }
-.mainParticles{
-  display: none;
-width: 100%;
-height: 100%;
-background-color: aquamarine;
-}
+
 @media (max-width: 690px) {
-    body {
-      flex-direction: column;
-    }
-    .modal-content {
-        background: rgba(0, 132, 255, 0.253);
-        padding: 20px;
-        width: 100%;
-        left: 0%;
-        height: auto;
-        position: relative;
-      }
-      .modal {
-        width: 100%;
-        height: auto;
-      }
-      .hiden{
-        display: none;
-    }
-    .nav {
-      margin-top: 0;
-      min-height: 100px;
-      flex-direction: column;
-      height: 30%;
-      width: 100%;
-      bottom:100px;
-    }
-    .section{
-      font-size: clamp(27px, 6vw, 39px);
-        width: 100%;
-        height: 100%;
-        border: 2px solid rgba(255, 255, 255, 0.712);
-        background-color: rgba(255, 255, 255, 0.055);
-        border-radius:0;
-    }
-    .ButtonOpen{
-        min-height: 100px;
-        bottom: 0;
-        width: 100%;
-    }
+  .modal {
+    margin-left: 0;
+    width: 100%;
+    height: auto;
   }
-  /* ------------------------------------------------------------------------------------------------------------ Register*/
-   .MainRegbox {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      width: 100%;
-    }
 
-    .Regbox {
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      width: clamp(300px, 40%, 400px);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .InputField {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-
-    .RegisterButton {
-      width: 100%;
-      padding: 12px;
-      background-color: #007bff;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .RegisterButton:hover {
-      background-color: #0056b3;
-    }
-
-    .note {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 14px;
+  .modal-content {
+    left: 0;
   }
-  .login{
-    color: blue;
-      cursor: pointer;
-  }
-  #log{
-    display: none;
-  }
-  /* ------------------------------------------------------------------------------------------------------------ */
+}
+
+/* ================== Форма реєстрації ================== */
+.main-regbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.regbox {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: clamp(300px, 40%, 400px);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.register-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+}
+
+.note {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.login {
+  color: blue;
+  cursor: pointer;
+}
+
+#log {
+  display: none;
+}

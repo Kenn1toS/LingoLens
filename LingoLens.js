@@ -1,24 +1,68 @@
+// ================== Навігація ==================
+let isNavLocked = false;
 
-
-
-
-
-
-function handleClick(event) {
-  const button = document.querySelector(".ButtonOpen");
+function toggleMenu() {
+  const button = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav");
 
   button.classList.toggle("selected");
   nav.classList.toggle("active");
 
-  document.removeEventListener('click', outsideClickListener);
+  document.removeEventListener("click", closeModalOnOutsideClick);
   setTimeout(() => {
-    document.addEventListener('click', outsideClickListener);
-  }, 0); 
+    document.addEventListener("click", closeModalOnOutsideClick);
+  }, 0);
+}
 
-    }
+function toggleLock() {
+  isNavLocked = !isNavLocked;
+  const lockBtn = document.querySelector(".lock-toggle");
+  lockBtn.classList.toggle("locked", isNavLocked);
 
+  if (isNavLocked) {
+    document.querySelector(".nav").classList.add("active");
+    document.querySelector(".menu-toggle").classList.add("selected");
+  }
+}
 
+function deactivateAllSections() {
+  document.querySelectorAll(".section").forEach(btn => btn.classList.remove("selected"));
+  [".main-home", ".main-particle", ".main-times", ".main-settings"].forEach(sel => {
+    const el = document.querySelector(sel);
+    if (el) el.classList.remove("active");
+  });
+}
+
+function activateSection(btnClass, pageClass) {
+  deactivateAllSections();
+  document.querySelector(btnClass).classList.add("selected");
+  document.querySelector(pageClass).classList.add("active");
+
+  if (!isNavLocked) {
+    document.querySelector(".nav").classList.remove("active");
+    document.querySelector(".menu-toggle").classList.remove("selected");
+  }
+}
+
+function navigateHome() {
+  activateSection(".nav-home", ".main-home");
+}
+
+function navigateParticle() {
+  activateSection(".nav-particle", ".main-particle");
+}
+
+function navigateTimes() {
+  activateSection(".nav-times", ".main-times");
+}
+
+function navigateSettings() {
+  activateSection(".nav-settings", ".main-settings");
+}
+
+window.addEventListener("DOMContentLoaded", navigateHome);
+
+// ================== Модальне вікно ==================
 const infoMap = {
    the: [
     "The – означений артикль.",
@@ -231,150 +275,92 @@ const infoMap = {
   "Future Perfect": ["Завершена дія до певного моменту в майбутньому.", "Структура: will have + V3.", "Приклад: I will have finished by noon."],
   "Future Perfect Continuous": ["Тривала дія до майбутнього моменту.", "Структура: will have been + V-ing.", "Приклад: She will have been working for 3 hours."]
 };
+
+
 const modal = document.getElementById("modal");
 const modalContent = document.getElementById("modal-content");
 
-document.querySelectorAll(".index, .indexTimes").forEach(element => {
-  element.addEventListener("click", (e) => {
+function closeModalOnOutsideClick(e) {
+  if (!modalContent.contains(e.target) && !e.target.closest(".index, .index-times")) {
+    modal.classList.add("hidden");
+  }
+}
+
+document.querySelectorAll(".index, .index-times").forEach(element => {
+  element.addEventListener("click", () => {
     const text = element.textContent.trim();
     const data = infoMap[text];
 
     if (Array.isArray(data)) {
       modalContent.innerHTML = data.map((line, i) => `<p class="modal-line line-${i}">${line}</p>`).join("");
-    } else if (typeof data === "string") {
-      modalContent.innerHTML = `<p class="modal-line single-line">${data}</p>`;
     } else {
       modalContent.innerHTML = `<p class="modal-line not-found">Інформація не знайдена.</p>`;
     }
 
-    modal.classList.remove("none"); 
+    modal.classList.remove("hidden");
   });
 });
 
-document.addEventListener("click", (e) => {
-  const isInsideModal = modalContent.contains(e.target);
-  const isTrigger = e.target.closest(".index, .indexTimes");
+document.addEventListener("click", closeModalOnOutsideClick);
 
-  if (!isInsideModal && !isTrigger) {
-    modal.classList.add("none"); 
+// ================== Повідомлення ==================
+const textarea = document.getElementById("message-input");
+const messagesBlock = document.getElementById("messages");
+let messages = JSON.parse(localStorage.getItem("messagesList")) || [];
+
+function renderMessages() {
+  messagesBlock.innerHTML = "";
+  messages.forEach((text, index) => {
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add("message");
+    msgDiv.textContent = text;
+
+    const delBtn = document.createElement("button");
+    delBtn.onclick = () => {
+      messages.splice(index, 1);
+      localStorage.setItem("messagesList", JSON.stringify(messages));
+      renderMessages();
+    };
+
+    msgDiv.appendChild(delBtn);
+    messagesBlock.appendChild(msgDiv);
+  });
+}
+
+renderMessages();
+
+textarea?.addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    const text = textarea.value.trim();
+    if (text) {
+      messages.push(text);
+      localStorage.setItem("messagesList", JSON.stringify(messages));
+      renderMessages();
+      textarea.value = "";
+    }
   }
 });
 
-function deactivateAllSections() {
-  document.querySelectorAll(".section").forEach(btn => btn.classList.remove("selected"));
-  [".mainHome", ".mainParticle", ".mainTimes", ".mainSettings"].forEach(sel => {
-    const el = document.querySelector(sel);
-    if (el) el.classList.remove("active");
-  });
-}
+// ================== Авторизація / Реєстрація ==================
+function register() {
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
 
-function activateSection(sectionClass, mainClass) {
-  deactivateAllSections();
-  document.querySelector(sectionClass).classList.add("selected");
-  document.querySelector(mainClass).classList.add("active");
-
-  if (!isNavLocked) {
-    document.querySelector(".nav").classList.remove("active");
-    document.querySelector(".ButtonOpen").classList.remove("selected");
-  }
-}
-
-let isNavLocked = false;
-
-function handleLockNav() {
-  isNavLocked = !isNavLocked;
-
-  const lockBtn = document.querySelector(".secured");
-  lockBtn.classList.toggle("locked", isNavLocked); 
-
-  if (isNavLocked) {
-    document.querySelector(".nav").classList.add("active");
-    document.querySelector(".ButtonOpen").classList.add("selected");
-  }
-}
-
-function handleClickHome() {
-  activateSection(".sectionHome", ".mainHome");
-}
-function handleClickParticle() {
-  activateSection(".sectionParticle", ".mainParticle");
-}
-function handleClickTimes() {
-  activateSection(".sectionTimes", ".mainTimes");
-}
-function handleClickSettings() {
-  activateSection(".sectionSettings", ".mainSettings");
-}
-window.addEventListener("DOMContentLoaded", handleClickHome);
-
- const textarea = document.getElementById('myText');
-  const messagesBlock = document.getElementById('messages');
-
-  let messages = JSON.parse(localStorage.getItem('messagesList')) || [];
-
-  function renderMessages() {
-    messagesBlock.innerHTML = '';
-    messages.forEach((text, index) => {
-      const msgDiv = document.createElement('div');
-      msgDiv.classList.add('message');
-      msgDiv.textContent = text;
-
-      const delBtn = document.createElement('button');
-      delBtn.onclick = () => {
-        messages.splice(index, 1);
-        localStorage.setItem('messagesList', JSON.stringify(messages));
-        renderMessages();
-      };
-
-      msgDiv.appendChild(delBtn);
-      messagesBlock.appendChild(msgDiv);
-    });
+  if (!username || !email || !password || !confirmPassword) {
+    alert("Будь ласка, заповніть всі поля.");
+    return;
   }
 
-  renderMessages();
-
-  textarea.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault(); 
-      const text = textarea.value.trim();
-      if (text) {
-        messages.push(text);
-        localStorage.setItem('messagesList', JSON.stringify(messages));
-        renderMessages();
-        textarea.value = '';
-      }
-    }
-  });
-
-
- function register() {
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-
-    if (!username || !email || !password || !confirmPassword) {
-      alert("Будь ласка, заповніть всі поля.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert("Паролі не співпадають.");
-      return;
-    }
-
-   window.location.href = "./main.html";
+  if (password !== confirmPassword) {
+    alert("Паролі не співпадають.");
+    return;
   }
 
-
-
-    function loginButton(){
-     const reg = document.getElementById("reg");
-    const log = document.getElementById("log");
-
-    reg.style.display = "none";
-    log.style.display = "block";
-    }
+  window.location.href = "./main.html";
+}
 
 function login() {
   const username = document.getElementById("usernameLogin").value.trim();
@@ -395,15 +381,15 @@ function login() {
   }
 }
 
+function showLogin() {
+  document.getElementById("reg").style.display = "none";
+  document.getElementById("log").style.display = "block";
+}
 
-function loginButtonBack(){
-     const reg = document.getElementById("reg");
-    const log = document.getElementById("log");
-
-    reg.style.display = "block";
-    log.style.display = "none";
-    }
-
+function showRegister() {
+  document.getElementById("reg").style.display = "block";
+  document.getElementById("log").style.display = "none";
+}
 
 
 
